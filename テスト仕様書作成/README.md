@@ -1,0 +1,58 @@
+# テスト仕様書作成
+
+Blog アプリケーションの **Service 層・Controller 層** に対する単体テスト仕様書と、
+1 行ずつ日本語コメントを付けたテストソースをまとめたフォルダです。
+
+書式は提供された見本「単体テスト仕様書（ユーザーログインテスト）」に準拠しています。
+
+## フォルダ構成
+
+```
+テスト仕様書作成/
+├── README.md                       … 本ファイル
+├── 単体テスト仕様書/                 … テスト仕様書（Markdown・PDF様式の表）
+└── テストソース_コメント付き/         … テストソース（.java・1行ごとに日本語コメント）
+```
+
+## 1. 単体テスト仕様書（`単体テスト仕様書/`）
+
+各ファイルは「システム名／サブシステム名／対象クラス／テスト方式」のヘッダと、
+「No・分類・テスト項目・検証内容・実施日・結果・備考」のテストケース一覧、テストデータ表で構成されます。
+（実施日・結果は未実施のため空欄／`-`）
+
+| No | 対象クラス | ファイル | ケース数 |
+| --- | --- | --- | --- |
+| 01 | UserLoginController | [01_UserLoginController_テスト仕様書.md](単体テスト仕様書/01_UserLoginController_テスト仕様書.md) | 6 |
+| 02 | UserRegisterController | [02_UserRegisterController_テスト仕様書.md](単体テスト仕様書/02_UserRegisterController_テスト仕様書.md) | 3 |
+| 03 | BlogListController | [03_BlogListController_テスト仕様書.md](単体テスト仕様書/03_BlogListController_テスト仕様書.md) | 3 |
+| 04 | BlogRegisterController | [04_BlogRegisterController_テスト仕様書.md](単体テスト仕様書/04_BlogRegisterController_テスト仕様書.md) | 3 |
+| 05 | BlogEditController | [05_BlogEditController_テスト仕様書.md](単体テスト仕様書/05_BlogEditController_テスト仕様書.md) | 4 |
+| 06 | BlogImageEditController | [06_BlogImageEditController_テスト仕様書.md](単体テスト仕様書/06_BlogImageEditController_テスト仕様書.md) | 4 |
+| 07 | BlogDeleteController | [07_BlogDeleteController_テスト仕様書.md](単体テスト仕様書/07_BlogDeleteController_テスト仕様書.md) | 5 |
+| 08 | LogoutController | [08_LogoutController_テスト仕様書.md](単体テスト仕様書/08_LogoutController_テスト仕様書.md) | 2 |
+| 09 | UserService | [09_UserService_テスト仕様書.md](単体テスト仕様書/09_UserService_テスト仕様書.md) | 4 |
+| 10 | BlogService | [10_BlogService_テスト仕様書.md](単体テスト仕様書/10_BlogService_テスト仕様書.md) | 13 |
+
+合計 **47 テストケース**。
+
+## 2. テストソース（`テストソース_コメント付き/`）
+
+仕様書の各ケースに対応する JUnit 5 テストです。import 文・閉じ括弧を除く実行行すべてに日本語コメントを付けています。
+
+| 種別 | テスト方式 | ファイル |
+| --- | --- | --- |
+| Controller | Spring Boot Test + MockMvc + Mockito（Service を `@MockBean`） | `*ControllerTest.java`（8 ファイル） |
+| Service | JUnit 5 + Mockito（DAO を `@Mock`） | `UserServiceTest.java` / `BlogServiceTest.java` |
+
+### 利用方法
+
+これらは学習・レビュー用の「コメント付き参照ソース」です。実際にビルド対象として実行する場合は、`src/test/java/blog/ex/` 配下へ配置してください（パッケージは Controller=`blog.ex.controller`、Service=`blog.ex.service`）。
+
+```bash
+./mvnw test
+```
+
+## 補足（実コードに関する所見）
+
+- **記事なし時のリダイレクト**: `BlogEditController` / `BlogImageEditController` / `BlogDeleteController` の「記事が存在しない」分岐は、リダイレクト文字列が `redirecr:/user/blog/list`（`redirect` のスペル誤り）になっています。このため Spring はリダイレクトせず、その文字列をビュー名として解決します。テストは**現行コードの実挙動どおり**（`status().isOk()` + `view().name("redirecr:/user/blog/list")`）に記述しています。コードを修正する場合はテストの該当行も `redirectedUrl("/user/blog/list")` へ変更が必要です。
+- **ユーザー登録の戻り**: `UserRegisterController.register` は `createAccount` の成否に関わらず常に `redirect:/user/login` を返します。重複ケースもリダイレクト先で検証しています。
