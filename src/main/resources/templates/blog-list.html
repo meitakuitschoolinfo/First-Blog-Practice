@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/blog.css}">
+</head>
+
+<body>
+	<!-- Header Start -->
+	<header class="site-header">
+		<div class="wrapper site-header__wrapper">
+			<div class="site-header__start">
+				<a href="#" class="brand" th:text="${userName}"></a>
+			</div>
+			<div class="site-header__end">
+				<nav class="nav">
+					<button class="nav__toggle" aria-expanded="false" type="button">
+						menu
+					</button>
+					<ul class="nav__wrapper">
+                        <li class="nav__item"><a th:href="@{/user/blog/list}">Home</a></li>
+                        <li class="nav__item"><a th:href="@{/user/blog/register}">Blog Register</a></li>
+                          <li class="nav__item"><a th:href="@{/user/blog/delete/list}">Delete List</a></li>
+                        <li class="nav__item"><a th:href="@{/user/blog/logout}">Logout</a></li>
+                    </ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<!-- Header End -->
+	<!--Main start-->
+	<main>
+		<section class="first-view-section js-cherry">
+			<img th:src="@{/img/cherry.jpg}" alt="">
+			<h2 class="cherry-card" th:text="Welcome+' '+${userName}"></h2>
+			<img th:src="@{/img/cherry.jpg}" alt="">
+		</section>
+		<section class="blog-list-section">
+			<h2>Blog List</h2>
+			<div class="blog-list-flex">
+				<article class="blog-topic-article" th:each="blog:${blogList}">
+					<a th:href="@{/user/blog/edit/{blogId}(blogId=${blog.blogId})}" class="blog-colum">
+						<div class="blog-colum-category">
+							<p th:text=" ${blog.category}"></p>
+						</div>
+						<img th:src="@{/blog-img/{items}(items=${blog.blogImage})}">
+						<div class="colum__box">
+							<p th:text="${#temporals.format(blog.registerDate, 'yyyy/MM/dd')}"></p>
+							<p th:text=" ${blog.blogTitle}"></p>
+						</div>
+					</a>
+				</article>
+			</div>
+		</section>
+	</main>
+	<footer id="footer">
+		<p class="copyright">Copyright &copy; 2022 Learner All Rights Reserved.</p>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+	<script th:src="@{/js/common.js}"></script>
+</body>
+
+</html>

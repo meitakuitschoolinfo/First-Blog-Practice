@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 id="register">Register</h1>
+
+			<form class="form" th:action="@{/user/register/process}" method="post">
+				<input type="text" placeholder="UserName" name="userName">
+				<input type="text" placeholder="UserEmail" name="email">
+				<input type="password" placeholder="Password" name="password">
+				<button type="submit" id="login-button">Register</button>
+			</form>
+		</div>
+
+		<ul class="leaf">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,434 @@
+/*-----------------------------------
+       first-view-section
+-------------------------------------*/
+.first-view-section {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fa8095;
+  transition: all 0.6s;
+  height: 100vh;
+}
+
+.first-view-section h2 {
+  font-family: 'Pacifico', cursive;
+  animation: typing 1s steps(80);
+  color: #fa8095;
+  width: 30%;
+  font-size: 1.2rem;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+}
+
+.first-view-section:hover {
+  box-shadow: 0 0 20px rgba(250, 128, 149, 0.2);
+  border-color: #fff;
+}
+
+/* 桜の花びらのスタイル */
+.petal {
+  position: absolute;
+  background-color: #ffc0cb;
+  /* 花びらの色 */
+  border-radius: 150% 0 150% 0;
+  animation: animate-petal 6s linear;
+}
+
+.petal::after {
+  content: "";
+  position: absolute;
+  top: -14%;
+  left: -10%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #ffc0cb;
+  border-radius: 150% 0 150% 0;
+  transform: rotate(15deg);
+}
+
+/* 花びらが降るアニメーション */
+@keyframes animate-petal {
+  0% {
+    top: 0;
+    transform: rotate(0deg);
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    top: 100vh;
+    transform: rotate(2000deg);
+  }
+}
+
+/*------------------------------------------
+         ブログ記事一覧
+--------------------------------------------*/
+.blog-list-section {
+  background-color: #FFFFDD;
+  padding-bottom: 1.5rem;
+}
+
+.blog-list-section h2 {
+  font-family: Kiwi Maru;
+  color: #594A4E;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-bottom: 0.25rem solid #594A4E;
+  width: 80%;
+  padding: 1rem;
+  margin: 0 auto 1rem auto;
+}
+
+.blog-list-flex {
+  width: 80%;
+  margin: 0 auto;
+  z-index: 999;
+}
+
+.blog-topic-article {
+  border: 1px solid #594A4E;
+  margin-bottom: 2rem;
+  background-color: #fff;
+}
+
+.blog-colum {
+  position: relative;
+  font-family: Kiwi Maru;
+  background-color: #fff;
+}
+
+.blog-colum img {
+  background-color: #fff;
+  border-bottom: 1px solid #594A4E;
+}
+
+.blog-colum-category {
+  position: absolute;
+  left: 0;
+  background-color: #594A4E;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.colum__box {
+  padding: 1rem;
+  background-color: #fff;
+  color: #594A4E;
+  font-family: Kiwi Maru;
+}
+
+/*------------------------------------------
+         フッター
+--------------------------------------------*/
+#footer {
+  background-color: #FDD9D9;
+}
+
+.copyright {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #594A4E;
+  font-family: 'Pacifico', cursive;
+}
+
+
+/*------------------------------------------
+         レスポンシブデザイン
+--------------------------------------------*/
+/*------------------------------------------
+         ブログ一覧
+--------------------------------------------*/
+@media screen and (min-width: 600px) {
+  .blog-list-flex {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .blog-topic-article {
+    width: 48%;
+    box-sizing: border-box;
+  }
+
+  .colum__box {
+    padding: 1.2rem;
+    background-color: #fff;
+  }
+
+  .colum__box p:nth-child(1) {
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .colum__box p:nth-child(2) {
+    text-align: left;
+    padding: 1.2rem 0;
+    font-size: 1.2rem;
+  }
+
+  .colum__box p:nth-child(3) {
+    text-align: right;
+    font-size: 1rem;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+  .first-view-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .blog-list-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .blog-topic-article {
+    width: 30%;
+    box-sizing: border-box;
+  }
+
+}
+
+/*---------------------------------------------
+               ブログ記事登録画面
+---------------------------------------------*/
+.lesson-register-section {
+  padding-top: 6rem;
+  margin-bottom: 2rem;
+}
+
+.lesson-register-section h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #594A4E;
+  font-family: Kiwi Maru;
+}
+
+.register-form {
+  width: 90%;
+  margin: 0 auto;
+  background-color: #FFFFDD;
+  padding-bottom: 2rem;
+}
+
+.register-input {
+  width: 90%;
+  padding: 1rem;
+  margin: 1rem auto;
+}
+
+.register-input div:first-child {
+  color: #594A4E;
+  font-family: Kiwi Maru;
+  font-size: 1rem;
+}
+
+/*----------------入力欄----------------------*/
+input[type="text"] {
+  background-color: #fff;
+  box-shadow: 2px 2px 3px 0px gray inset;
+  width: 90%;
+  padding: 0.5rem;
+}
+
+input[type="file"] {
+  width: 90%;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  color: #594A4E;
+  font-family: Kiwi Maru;
+}
+
+input[type="date"] {
+  width: 90%;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px 0px gray inset;
+  padding: 0.5rem;
+
+}
+
+textarea {
+  width: 90%;
+  line-height: 30px;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px 0px gray inset;
+  padding: 0.5rem;
+}
+
+/*----------------------------------------------
+       ボタンデザイン共通設定
+------------------------------------------------*/
+button {
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
+  font-family: Kiwi Maru;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/*----------------登録と戻るボタン----------------------*/
+.register-button {
+  display: flex;
+  justify-content: center;
+  gap: 0 0.5rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/*----登録ボタンデザイン----*/
+.add {
+  width: 128px;
+  height: 40px;
+  line-height: 35px;
+  background-color: #FB9A85;
+  border-radius: 25px;
+  margin-bottom: 25px;
+}
+
+/*----戻るボタンデザイン-----*/
+.back {
+  width: 128px;
+  height: 40px;
+  line-height: 35px;
+  background-color: #40CD82;
+  border-radius: 22px;
+}
+
+@media screen and (min-width: 600px) {
+  .register-input {
+    display: flex;
+  }
+  .register-input div:first-child {
+  width: 20%;
+  text-align: left;
+  }
+  /*----------------入力欄----------------------*/
+  input[type="text"] {
+    width: 80%;
+  }
+
+  input[type="file"] {
+    width: 80%;
+  }
+
+  input[type="date"] {
+    width: 80%;
+  }
+
+  textarea {
+    width: 80%;
+  }
+  /*----------------登録と戻るボタン----------------------*/
+.register-button {
+  display: flex;
+  justify-content: center;
+  gap: 0 0.5rem;
+  width: 80%;
+  margin: 0 auto;
+}
+}
+@media screen and (min-width: 1024px) {
+  .register-form {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #FFFFDD;
+  }
+}
+
+/*------------------------------------------
+         ブログ記事編集画面
+--------------------------------------------*/
+.change {
+  width: 128px;
+  height: 40px;
+  line-height: 35px;
+  background-color: #F56823;
+  border-radius: 22px;
+}
+.register-input img{
+  width: 90%;
+}
+@media screen and (min-width: 600px) {
+  .register-input img{
+    width: 80%;
+  }
+}
+/*------------------------------------------
+         fix画面
+--------------------------------------------*/
+.lesson-fix-section{
+  padding-top: 6rem;
+}
+.lesson-fix-box {
+  background: #FDEFF5;
+  width: 80%;
+  margin:0 auto 2rem;
+  border-radius: 1rem;
+  padding: 1rem 0;
+}
+.lesson-fix-box h2{
+  color: #594A4E;
+  font-family: Kiwi Maru;
+  text-align: center;
+  padding: 1rem 0;
+}
+.menu-link{
+  text-align: center;
+  padding: 1rem 0;
+}
+.menu-link a {
+	padding: 0.5rem 1rem;
+	font-weight: bold;
+	border: 2px solid #594A4E;
+	color: #594A4E;
+	transition: 0.5s;
+  font-size: 1rem;
+  border-radius: 1rem;
+}
+.menu-link a:hover{
+  border: 2px solid #EB6EA5;
+	color: #EB6EA5;
+}
+@media screen and (min-width: 600px) {
+  .lesson-fix-box {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .lesson-fix-box {
+    width: 600px;
+  }
+}
+/*------------------------------------------
+         ブログ削除
+--------------------------------------------*/
+.blog-delete-section{
+  padding-top: 6rem;
+}
+.blog-delete-section h2{
+  color: #594A4E;
+  font-family: Kiwi Maru;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}

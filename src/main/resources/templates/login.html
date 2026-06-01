@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1>Welcome</h1>
+
+			<form class="form" th:action="@{/user/login/process}" method="post">
+				<input type="text" placeholder="UserEmail" name="email">
+				<input type="password" placeholder="Password" name="password">
+				<button type="submit" id="login-button">Login</button>
+				<a th:href="@{/user/register}" class="register-link">新規登録は<span
+						class="register-link-span">こちら</span></a>
+			</form>
+
+		</div>
+
+		<ul class="sakura">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+</body>
+
+</html>
