@@ -10,9 +10,10 @@ Blog アプリケーションの **Service 層・Controller 層** に対する�
 ```
 テスト仕様書作成/
 ├── README.md                       … 本ファイル
-├── 単体テスト仕様書/                 … テスト仕様書（Markdown・PDF様式の表）
-└── テストソース_コメント付き/         … テストソース（.java・1行ごとに日本語コメント）
+└── 単体テスト仕様書/                 … テスト仕様書（Markdown・PDF様式の表）
 ```
+
+> テストソース（.java）は `src/test/java/blog/ex/` 配下へ移行済みです（下記「2. テストソース」参照）。
 
 ## 1. 単体テスト仕様書（`単体テスト仕様書/`）
 
@@ -35,22 +36,23 @@ Blog アプリケーションの **Service 層・Controller 層** に対する�
 
 合計 **47 テストケース**。
 
-## 2. テストソース（`テストソース_コメント付き/`）
+## 2. テストソース（`src/test/java/blog/ex/` へ移行済み）
 
 仕様書の各ケースに対応する JUnit 5 テストです。import 文・閉じ括弧を除く実行行すべてに日本語コメントを付けています。
+ビルド・実行できるよう、ソースは正式なテストディレクトリへ移行しました。
 
-| 種別 | テスト方式 | ファイル |
-| --- | --- | --- |
-| Controller | Spring Boot Test + MockMvc + Mockito（Service を `@MockBean`） | `*ControllerTest.java`（8 ファイル） |
-| Service | JUnit 5 + Mockito（DAO を `@Mock`） | `UserServiceTest.java` / `BlogServiceTest.java` |
+| 種別 | テスト方式 | 配置先 | ファイル |
+| --- | --- | --- | --- |
+| Controller | Spring Boot Test + MockMvc + Mockito（Service を `@MockBean`） | `src/test/java/blog/ex/controller/` | `UserLoginControllerTest` / `UserRegisterControllerTest` / `LogoutControllerTest` / `BlogListControllerTest` / `BlogRegisterControllerTest` / `BlogEditControllerTest` / `BlogImageEditControllerTest` / `BlogDeleteControllerTest` |
+| Service | JUnit 5 + Mockito（DAO を `@Mock`） | `src/test/java/blog/ex/service/` | `UserServiceTest` / `BlogServiceTest` |
 
-### 利用方法
-
-これらは学習・レビュー用の「コメント付き参照ソース」です。実際にビルド対象として実行する場合は、`src/test/java/blog/ex/` 配下へ配置してください（パッケージは Controller=`blog.ex.controller`、Service=`blog.ex.service`）。
+### 実行方法
 
 ```bash
 ./mvnw test
 ```
+
+> 移行に伴い、分割前の旧テスト `BlogControllerTest.java` / `BlogControllerTest2.java`（旧モノリシック `BlogController` を URL 経由でテスト）は、機能分割後の 6 つの `Blog*ControllerTest` に置き換わったため削除しました。`UserLoginControllerTest` / `UserRegisterControllerTest` は本コメント付き版で更新しています。
 
 ## 補足（実コードに関する所見）
 
